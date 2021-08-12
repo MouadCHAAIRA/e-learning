@@ -1,0 +1,64 @@
+.image_login {
+  display: block;
+  height: 150px;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  text-shadow: 0 0 3px #e9c121;
+}
+
+.cours {
+  background-color: #ffffee;
+  box-shadow: 5px 5px #e9c121;
+}
+.welcome-text {
+  position: absolute;
+  right: 150px;
+  top: 5px;
+}
+.imageStudentConnected {
+  position: absolute;
+  right: 110px;
+  top: 5px;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+}
+.imageInstructorConnected {
+  position: absolute;
+  right: 110px;
+  top: 5px;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+}
+.image_logo {
+  position: absolute;
+  right: 10px;
+  top: -20px;
+  height: 100px;
+  width: 100px;
+}
+.commentaire {
+  background-color: #ffffee;
+  height: 100px;
+  width: 800px;
+  margin: 10px;
+  padding-left: 10px;
+  box-shadow: 5px 5px 10px #e9c121;
+}
+.favoritCour {
+  background-color: #ffffcc;
+  box-shadow: 5px 5px #e9c121;
+}
+.comment {
+  position: relative;
+}
+.deleteComment {
+  position: absolute;
+  right: 280px;
+  top: -30px;
+}
