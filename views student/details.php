@@ -17,32 +17,28 @@ include('../controller/coursController.php');
                  addToFavori($_POST['course_id'],$_POST['student_id']);
                  
              }
-           
-           
-             
+              
            
     }
         
          if(isset($_POST['comment']) && !empty($_POST['comment'])){
          addComment($_POST['course_id'], $_POST['student_id'], $_POST['comment']);
-         echo "<meta http-equiv='refresh' content='0'>";
-        
-         echo 'commenté';
-        
+         echo "<meta http-equiv='refresh' content='0'>";  
          }   
 
     }
     if(!empty($_POST['comment_id'])){
       deleteComment($_POST['comment_id']);
       echo "<meta http-equiv='refresh' content='0'>";
+      
     }
           
         if(!empty($_SESSION['student'])){
         $studentConnected=getStudent($_SESSION['student']);
     }  
           
-    
-   
+     
+      
  ?>
 
 <?php include('../layouts/header.php') ?>
@@ -87,49 +83,61 @@ include('../controller/coursController.php');
                   </form>
               <?php endif ?> 
               
-              
+                  </div>
+                  </div>    
                   <h2 class="text-center text-muted">Commentaires</h2>
+                  <h2><?php echo count(getCountCommentaire($_GET['id'])). " " ."commentaires"?> </h2>
 
-              
-             
          <?php foreach($StudentCommentaire as $student) { ?>
          <?php if($student['course_id']==$_GET['id']) : ?>
-         
-             
-            <img style="height:50px;width:50px; border-radius:100%; margin-top:10px;" src="image/<?php echo  $student['photo'] ?>" alt="">
             
-            <span><?php  echo $student['name'];?></span>
-            <?php if(!empty($_SESSION['student'])): ?>
+         
+
+   <!-- COMMENT 1 - START -->
+  <section class="content-item" id="comments" style="margin-bottom:50px">
+    <div class="container">   
+    	<div class="row">
+            <div class="col-sm-8">
+                <div class="media" >
+                    <a class="pull-left" href="#"><img style="height:100px; width:100px; margin-right:10px"class="media-object" src="image/<?php echo  $student['photo'] ?>" alt=""></a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><?php  echo $student['name'];?></h4>
+                        <p><?php echo $student['content'] ?></p>
+                        <ul class="list-unstyled list-inline media-detail pull-left">
+                            <li><i style="color:blue;" class="fa fa-calendar"></i><?php echo $student['created_at'] ?></li>
+  
+                        </ul>
+        <ul class="list-unstyled list-inline media-detail pull-right">
+                           
+
+                            <?php if(!empty($_SESSION['student'])): ?>
              <?php  foreach($_SESSION['id_student'] as $studentconnected){ ?> 
                     
             <?php if(!empty($_SESSION['student']) && $student['id']==$studentconnected['id']) : ?>  
-              <div class="comment">
+              
               <form action="" method="post" class=formDeleteComment>
               <input type="hidden" name="comment_id" value="<?php echo $student['comment_id'] ?>"> 
-             <button  style="color:white ,background-color:black" class="btn btn-danger deleteComment "><i class="fas fa-window-close"></i></button>
+             <button  style="color:blue; padding: 0; border: none; background: none;" class="" deleteComment ">Delete</button>
             </form>
-            </div>
-             <?php endif ?> 
-            
-             
-            
+                             
+        </ul>
+               
+           <?php endif ?> 
              <?php }  ?>
             <?php endif ?>
-            <div style="border: none; border-radius:1%; background-color:#E6E6E6" class="commentaire" ><?php echo $student['content'] ?></div>         
-            <?php endif ?>         
-            <?php } ?>
-   
-               
+          
+            <!-- COMMENT 1 - END -->
+
+           </div>
+                </div> 
          
           </div>
-          
-           
-                  
-                   
-        </div>
-
     </div>
 </div>
+</section>
+  <?php endif ?>         
+            <?php } ?>
+
  <script>
 elt1=document.getElementById('textarea');
 elt2=document.getElementById('form');

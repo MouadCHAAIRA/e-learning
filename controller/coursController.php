@@ -337,7 +337,7 @@ function getInstructor($email){
         echo 'error conexion';
     }
     else{
-        $query="SELECT id,photo_instructor FROM  instructor WHERE email=:email";
+        $query="SELECT id,photo_instructor,name,bio,password FROM  instructor WHERE email=:email";
 
         $statement=$pdo->prepare($query);
 
@@ -455,7 +455,7 @@ function getstudentcommented(){
 global $pdo;
     
     
-        $query='SELECT comments.content, studens.name, studens.photo,comments.course_id,studens.id,comments.id AS comment_id  from studens
+        $query='SELECT comments.content, studens.name, studens.photo,comments.course_id,studens.id,comments.id AS comment_id, comments.created_at   from studens
          INNER JOIN comments ON studens.id=comments.student_id 
          INNER JOIN course ON course.id=comments.course_id 
          ORDER BY comments.created_at DESC';
@@ -532,4 +532,44 @@ function updateStudent($name, $email, $password,$photo,$bio)
         ]);
 
     }
+}
+function updateInstructor($name, $email, $password,$photo,$bio)
+{
+    global $pdo;
+    if(!$pdo)
+    {
+        echo 'error conexion';
+    }
+    else{
+        $query='UPDATE instructor set name=:name, email=:email, password=:password, photo_instructor=:photo_instructor, bio=:bio where email=:email';
+
+        $statement=$pdo->prepare($query);
+
+        $statement->execute([
+            ':name'=>$name,
+            ':email'=>$email,
+            ':password'=>$password,
+            ':photo_instructor'=>$photo,
+            ':bio'=>$bio,
+            
+        
+        ]);
+
+    }
+}
+
+function getCountCommentaire($id){
+global $pdo;
+    
+    
+        $query='SELECT *from comments where course_id=:course_id';
+    
+        $statement=$pdo->prepare($query);
+
+        $statement->execute([
+            ':course_id'=>$id,
+        ]);
+
+        return  $statement->fetchAll();
+    
 }

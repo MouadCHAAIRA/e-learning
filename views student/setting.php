@@ -2,7 +2,7 @@
 session_start();
 if(empty($_SESSION['student']))
 {
-  header('location:index.php');
+header('location:../views student/index.php');
 
 }
 
@@ -46,7 +46,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <div class="container mt-5">
     <div class="row">
         <form action="" class="form-group col-md-6 offset-3" method="POST" enctype="multipart/form-data">
-           
+          
+
             <input type="text" class="form-control mt-2" placeholder="username" name="username" value="<?php echo $student['name']?>">
             <input type="email" class="form-control mt-2" placeholder="email" name="email" value="<?php echo $_SESSION['student']?>">
             <input type="password" class="form-control mt-2" placeholder="password" name='password' value="<?php echo $student['password']?>"">

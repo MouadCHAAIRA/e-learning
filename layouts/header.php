@@ -3,7 +3,7 @@ if(isset($_POST['logout']))
 {
   session_destroy();
   session_destroy();
-  header('location:login.php');
+  header('location:../views student/index.php');
 }
 ?>
 
@@ -15,6 +15,7 @@ if(isset($_POST['logout']))
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="Description" content="Enter your description here"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 
@@ -55,6 +56,8 @@ if(isset($_POST['logout']))
 
            <?php if(!empty($_SESSION['instructor'])): ?>
        <a href="../views instructor/index.php" style="color:black" class="btn " style="background-color:#E9C121; color:white ; font-size:2rem"><button type="button" class="btn btn-secondary btn-lg">Votre Espace</button></a> 
+       <a style="color:black" class="nav-link" href="../views instructor/profil.php"><i class="fas fa-user-alt" style="color:white; font-size:2rem"></i></a>
+
        <?php endif ?> 
         
           <?php if(!empty($_SESSION['instructor'])): ?>

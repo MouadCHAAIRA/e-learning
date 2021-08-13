@@ -1,30 +1,31 @@
 <?php
 session_start();
-if(empty($_SESSION['student']))
+if(empty( $_SESSION['instructor']))
 {
   header('location:../views student/index.php');
 
 }
 
 include("../controller/coursController.php");
-if(!empty($_SESSION['student'])){
-        $studentConnected=getStudent($_SESSION['student']);
+if(!empty( $_SESSION['instructor'])){
+        $instructorConnected=getInstructor($_SESSION['instructor']);
     }  
 
 
 
 ?>
 
-
-
 <?php include("../layouts/header.php") ?>
-<?php if(!empty($_SESSION['student'])): ?>
-<?php foreach($studentConnected as $student): ?>
-<img class="imageStudentConnected" src="image/<?php echo $student['photo'] ?>" >
-<strong class="welcome-text"><?php echo $student['name']?></strong>
+
+<?php if(!empty($_SESSION['instructor'])): ?>
+<?php foreach($instructorConnected as $instructor): ?>
+<img class="imageStudentConnected" src="../views instructor/image_instructor/<?php echo $instructor['photo_instructor'] ?>" >
+<h5 class="welcome-text">Bienvenue monsieur:<strong> <?php echo $_SESSION['instructor'] ?> </strong></h5>
 
 
 <img class="image_logo" src="../layouts/logo-IT-TECH.png" alt="student avatar" >
+
+
 
 <div class="container bootstrap snippets bootdey">
 <div class="row">
@@ -32,10 +33,10 @@ if(!empty($_SESSION['student'])){
       <div class="panel">
           <div class="user-heading round">
               <a href="#">
-                  <img src="image/<?php echo $student['photo'] ?>" alt="">
+                  <img src="image_instructor/<?php echo $instructor['photo_instructor'] ?>" alt="">
               </a>
-              <h1><?php echo $student['name']?></h1>
-              <h5><?php echo $_SESSION['student'] ?></h5>
+              <h1><?php echo $instructor['name']?></h1>
+              <h5><?php echo $_SESSION['instructor'] ?></h5>
           </div>
 
           <ul class="nav nav-pills nav-stacked">
@@ -56,11 +57,11 @@ if(!empty($_SESSION['student'])){
               <h1>Biographie</h1>
               <div class="row">
                   <div class="bio-row">
-                      <p><span>Username</span>:<?php echo $student['name']?></p>
+                      <p><span>Username</span>:<?php echo $instructor['name']?></p>
                   </div>
                   
                   <div class="bio-row">
-                      <p><span>Bio:</span><?php echo $student['bio']?> </p>
+                      <p><span>Bio:</span><?php echo $instructor['bio']?> </p>
                   </div>
                 
               </div>

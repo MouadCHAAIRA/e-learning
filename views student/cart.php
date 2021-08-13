@@ -16,6 +16,7 @@ include("../controller/coursController.php");
        
     if(!empty($_POST['id'])){
     deleteFavori($_POST['id']);
+    echo "<meta http-equiv='refresh' content='0'>";
     
     }
   }
